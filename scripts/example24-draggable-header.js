@@ -9,14 +9,35 @@ class Example extends React.Component {
   createRows = () => {
     let rows = [];
     for (let i = 1; i < 1000; i++) {
-      rows.push({
+      rows.push(this.createRow(i) /*{
         id: i,
         title: 'Title ' + i,
         count: i * 1000
-      });
+      }*/);
     }
 
     return rows;
+  };
+
+  createRow = (rowIndex) => {
+    const row = {};
+    for (let i = 1; i < 100; i++) {
+      row['id' + i] = rowIndex + '_' + i;
+    }
+    return row;
+  };
+
+  createColumns = () => {
+    let columns = [];
+    for (let i = 1; i < 100; i++) {
+      columns.push(      {
+        key: 'id' + i,
+        name: 'ID' + i,
+        width: 50,
+        draggable: true
+      });
+    }
+    return columns;
   };
 
   rowGetter = (i) => {
@@ -50,7 +71,7 @@ class Example extends React.Component {
   };
 
   state = {
-    columns: [
+    columns: this.createColumns(), /*[
       {
         key: 'id',
         name: 'ID',
@@ -69,7 +90,7 @@ class Example extends React.Component {
         draggable: true,
         resizable: true
       }
-    ],
+    ],*/
     rows: this.createRows()
   };
 
